@@ -158,9 +158,10 @@ class Billing {
   /// Returns updated list of product identifiers that have been purchased.
   Future<bool> purchase(String identifier) {
     assert(identifier != null);
-    if (_purchasedProducts.contains(identifier)) {
+    // remove to be able to consume.
+    /*if (_purchasedProducts.contains(identifier)) {
       return new Future.value(true);
-    }
+    }*/
     return synchronized(this, () async {
       try {
         final List purchases = await _channel.invokeMethod('purchase', {'identifier': identifier});
